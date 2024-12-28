@@ -5,7 +5,7 @@ import secrets
 if "current_question" not in st.session_state:
     st.session_state.current_question = None
 
-tab1, tab2, tab3, tab4, tab5, tab6, tab_rand = st.tabs(['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Random Question'])
+tab1, tab2, tab3, tab4, tab5, tab6, tab_ep, tab_rand = st.tabs(['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Examprepper','Random Question'])
 
 # Questions and their options
 questions_t1 = [
@@ -1729,7 +1729,7 @@ questions_t4 = [
       "C. Import the model into Vertex AI. On Vertex AI Pipelines, create a pipeline that uses the DataflowPythonJobOp and the ModelBatchPredictOp components.",
       "D. Import the model into BigQuery. Implement the data processing logic in a SQL query. On Vertex AI Pipelines, create a pipeline that uses the BigqueryQueryJobOp and the BigqueryPredictModelJobOp components."
     ],
-    "answer": "B. Import the model into Vertex AI and deploy it to a Vertex AI endpoint. Create a Dataflow pipeline that reuses the data processing logic, sends requests to the endpoint, and then uploads predictions to a BigQuery table."
+    "answer": "C. Import the model into Vertex AI. On Vertex AI Pipelines, create a pipeline that uses the DataflowPythonJobOp and the ModelBatchPredictOp components."
   },
   {
     "question": "You have deployed a scikit-learn model to a Vertex AI endpoint using a custom model server. You enabled autoscaling; however, the deployed model fails to scale beyond one replica, leading to dropped requests. You notice that CPU utilization remains low even during periods of high load.\n\nWhat should you do?",
@@ -2864,6 +2864,208 @@ questions_t6 = [
     "answer": "B. Utilize the TRANSFORM clause in the CREATE MODEL statement to compute the necessary statistics."
   }
 ]
+questions_ep = [
+    {
+    "question": "You are an ML engineer at a manufacturing company. You need to build a model that identifies defects in products based on images of the product taken at the end of the assembly line. You want your model to preprocess the images with lower computation to quickly extract features of defects in products. Which approach should you use to build the model?",
+    "options": [
+      "A. Reinforcement learning",
+      "B. Recommender system",
+      "C. Recurrent Neural Networks (RNN)",
+      "D. Convolutional Neural Networks (CNN)"
+    ],
+    "answer": "D. Convolutional Neural Networks (CNN)"
+  },
+  {
+    "question": "You work for a large hotel chain and have been asked to assist the marketing team in gathering predictions for a targeted marketing strategy. You need to make predictions about user lifetime value (LTV) over the next 20 days so that marketing can be adjusted accordingly. The customer dataset is in BigQuery, and you are preparing the tabular data for training with AutoML Tables. This data has a time signal that is spread across multiple columns. How should you ensure that AutoML fits the best model to your data?",
+    "options": [
+      "A. Manually combine all columns that contain a time signal into an array. AIlow AutoML to interpret this array appropriately. Choose an automatic data split across the training, validation, and testing sets.",
+      "B. Submit the data for training without performing any manual transformations. AIlow AutoML to handle the appropriate transformations. Choose an automatic data split across the training, validation, and testing sets.",
+      "C. Submit the data for training without performing any manual transformations, and indicate an appropriate column as the Time column. AIlow AutoML to split your data based on the time signal provided, and reserve the more recent data for the validation and testing sets.",
+      "D. Submit the data for training without performing any manual transformations. Use the columns that have a time signal to manually split your data. Ensure that the data in your validation set is from 30 days after the data in your training set and that the data in your testing sets from 30 days after your validation set."
+    ],
+    "answer": "D. Submit the data for training without performing any manual transformations. Use the columns that have a time signal to manually split your data. Ensure that the data in your validation set is from 30 days after the data in your training set and that the data in your testing sets from 30 days after your validation set."
+  },
+  {
+    "question": "You have developed a BigQuery ML model that predicts customer chum, and deployed the model to Vertex AI Endpoints. You want to automate the retraining of your model by using minimal additional code when model feature values change. You also want to minimize the number of times that your model is retrained to reduce training costs. What should you do?",
+    "options": [
+      "A. 1 Enable request-response logging on Vertex AI Endpoints 2. Schedule a TensorFlow Data Validation job to monitor prediction drift 3. Execute model retraining if there is significant distance between the distributions",
+      "B. 1. Enable request-response logging on Vertex AI Endpoints 2. Schedule a TensorFlow Data Validation job to monitor training/serving skew 3. Execute model retraining if there is significant distance between the distributions",
+      "C. 1. Create a Vertex AI Model Monitoring job configured to monitor prediction drift 2. Configure alert monitoring to publish a message to a Pub/Sub queue when a monitoring alert is detected 3. Use a Cloud Function to monitor the Pub/Sub queue, and trigger retraining in BigQuery",
+      "D. 1. Create a Vertex AI Model Monitoring job configured to monitor training/serving skew 2. Configure alert monitoring to publish a message to a Pub/Sub queue when a monitoring alert is detected 3. Use a Cloud Function to monitor the Pub/Sub queue, and trigger retraining in BigQuery"
+    ],
+    "answer": "D. 1. Create a Vertex AI Model Monitoring job configured to monitor training/serving skew 2. Configure alert monitoring to publish a message to a Pub/Sub queue when a monitoring alert is detected 3. Use a Cloud Function to monitor the Pub/Sub queue, and trigger retraining in BigQuery"
+  },
+  {
+    "question": "You developed a Transformer model in TensorFlow to translate text. Your training data includes millions of documents in a Cloud Storage bucket. You plan to use distributed training to reduce training time. You need to configure the training job while minimizing the effort required to modify code and to manage the cluster’s configuration. What should you do?",
+    "options": [
+      "A. Create a Vertex AI custom training job with GPU accelerators for the second worker pool. Use tf.distribute.MultiWorkerMirroredStrategy for distribution.",
+      "B. Create a Vertex AI custom distributed training job with Reduction Server. Use N1 high-memory machine type instances for the first and second pools, and use N1 high-CPU machine type instances for the third worker pool.",
+      "C. Create a training job that uses Cloud TPU VMs. Use tf.distribute.TPUStrategy for distribution.",
+      "D. Create a Vertex AI custom training job with a single worker pool of A2 GPU machine type instances. Use tf.distribute.MirroredStrategv for distribution."
+    ],
+    "answer": "A. Create a Vertex AI custom training job with GPU accelerators for the second worker pool. Use tf.distribute.MultiWorkerMirroredStrategy for distribution."
+  },
+  {
+    "question": "You developed a Vertex AI pipeline that trains a classification model on data stored in a large BigQuery table. The pipeline has four steps, where each step is created by a Python function that uses the KubeFlow v2 API. The components have the following names:\n\nQuestion\nYou launch your Vertex AI pipeline as the following:\n\nQuestion\nYou perform many model iterations by adjusting the code and parameters of the training step. You observe high costs associated with the development, particularly the data export and preprocessing steps. You need to reduce model development costs. What should you do?",
+    "options": [
+      "A. Change the components’ YAML filenames to export.yaml, preprocess,yaml, f \"train- {dt}.yaml\", f\"calibrate-{dt).vaml\".",
+      "B. Add the {\"kubeflow.v1.caching\": True} parameter to the set of params provided to your PipelineJob.",
+      "C. Move the first step of your pipeline to a separate step, and provide a cached path to Cloud Storage as an input to the main pipeline.",
+      "D. Change the name of the pipeline to f\"my-awesome-pipeline-{dt}\"."
+    ],
+    "answer": "B. Add the {\"kubeflow.v1.caching\": True} parameter to the set of params provided to your PipelineJob."
+  },
+  {
+    "question": "You work for a bank. You have been asked to develop an ML model that will support loan application decisions. You need to determine which Vertex AI services to include in the workflow. You want to track the model’s training parameters and the metrics per training epoch. You plan to compare the performance of each version of the model to determine the best model based on your chosen metrics. Which Vertex AI services should you use?",
+    "options": [
+      "A. Vertex ML Metadata, Vertex AI Feature Store, and Vertex AI Vizier",
+      "B. Vertex AI Pipelines, Vertex AI Experiments, and Vertex AI Vizier",
+      "C. Vertex ML Metadata, Vertex AI Experiments, and Vertex AI TensorBoard",
+      "D. Vertex AI Pipelines, Vertex AI Feature Store, and Vertex AI TensorBoard"
+    ],
+    "answer": "C. Vertex ML Metadata, Vertex AI Experiments, and Vertex AI TensorBoard"
+  },
+  {
+    "question": "You are building a TensorFlow text-to-image generative model by using a dataset that contains billions of images with their respective captions. You want to create a low maintenance, automated workflow that reads the data from a Cloud Storage bucket collects statistics, splits the dataset into training/validation/test datasets performs data transformations trains the model using the training/validation datasets, and validates the model by using the test dataset. What should you do?",
+    "options": [
+      "A. Use the Apache Airflow SDK to create multiple operators that use Dataflow and Vertex AI services. Deploy the workflow on Cloud Composer.",
+      "B. Use the MLFlow SDK and deploy it on a Google Kubernetes Engine cluster. Create multiple components that use Dataflow and Vertex AI services.",
+      "C. Use the Kubeflow Pipelines (KFP) SDK to create multiple components that use Dataflow and Vertex AI services. Deploy the workflow on Vertex AI Pipelines.",
+      "D. Use the TensorFlow Extended (TFX) SDK to create multiple components that use Dataflow and Vertex AI services. Deploy the workflow on Vertex AI Pipelines."
+    ],
+    "answer": "D. Use the TensorFlow Extended (TFX) SDK to create multiple components that use Dataflow and Vertex AI services. Deploy the workflow on Vertex AI Pipelines."
+  },
+  {
+    "question": "Your team frequently creates new ML models and runs experiments. Your team pushes code to a single repository hosted on Cloud Source Repositories. You want to create a continuous integration pipeline that automatically retrains the models whenever there is any modification of the code. What should be your first step to set up the CI pipeline?",
+    "options": [
+      "A. Configure a Cloud Build trigger with the event set as \"Pull Request\"",
+      "B. Configure a Cloud Build trigger with the event set as \"Push to a branch\"",
+      "C. Configure a Cloud Function that builds the repository each time there is a code change",
+      "D. Configure a Cloud Function that builds the repository each time a new branch is created"
+    ],
+    "answer": "B. Configure a Cloud Build trigger with the event set as \"Push to a branch\""
+  },
+  {
+    "question": "You need to use TensorFlow to train an image classification model. Your dataset is located in a Cloud Storage directory and contains millions of labeled images. Before training the model, you need to prepare the data. You want the data preprocessing and model training workflow to be as efficient, scalable, and low maintenance as possible. What should you do?",
+    "options": [
+      "A. 1. Create a Dataflow job that creates sharded TFRecord files in a Cloud Storage directory. 2. Reference tf.data.TFRecordDataset in the training script. 3. Train the model by using Vertex AI Training with a V100 GPU.",
+      "B. 1. Create a Dataflow job that moves the images into multiple Cloud Storage directories, where each directory is named according to the corresponding label 2. Reference tfds.folder_dataset:ImageFolder in the training script. 3. Train the model by using Vertex AI Training with a V100 GPU.",
+      "C. 1. Create a Jupyter notebook that uses an nt-standard-64 V100 GPU Vertex AI Workbench instance. 2. Write a Python script that creates sharded TFRecord files in a directory inside the instance. 3. Reference tf.data.TFRecordDataset in the training script. 4. Train the model by using the Workbench instance.",
+      "D. 1. Create a Jupyter notebook that uses an n1-standard-64, V100 GPU Vertex AI Workbench instance. 2. Write a Python script that copies the images into multiple Cloud Storage directories, where each. directory is named according to the corresponding label. 3. Reference tfds.foladr_dataset.ImageFolder in the training script. 4. Train the model by using the Workbench instance."
+    ],
+    "answer": "A. 1. Create a Dataflow job that creates sharded TFRecord files in a Cloud Storage directory. 2. Reference tf.data.TFRecordDataset in the training script. 3. Train the model by using Vertex AI Training with a V100 GPU."
+  },
+  {
+    "question": "You are developing a model to identify traffic signs in images extracted from videos taken from the dashboard of a vehicle. You have a dataset of 100,000 images that were cropped to show one out of ten different traffic signs. The images have been labeled accordingly for model training, and are stored in a Cloud Storage bucket. You need to be able to tune the model during each training run. How should you train the model?",
+    "options": [
+      "A. Train a model for object detection by using Vertex AI AutoML.",
+      "B. Train a model for image classification by using Vertex AI AutoML.",
+      "C. Develop the model training code for object detection, and train a model by using Vertex AI custom training.",
+      "D. Develop the model training code for image classification, and train a model by using Vertex AI custom training."
+    ],
+    "answer": "D. Develop the model training code for image classification, and train a model by using Vertex AI custom training."
+  },
+  {
+    "question": "Your team is training a large number of ML models that use different algorithms, parameters, and datasets. Some models are trained in Vertex AI Pipelines, and some are trained on Vertex AI Workbench notebook instances. Your team wants to compare the performance of the models across both services. You want to minimize the effort required to store the parameters and metrics. What should you do?",
+    "options": [
+      "A. Implement an additional step for all the models running in pipelines and notebooks to export parameters and metrics to BigQuery.",
+      "B. Create a Vertex AI experiment. Submit all the pipelines as experiment runs. For models trained on notebooks log parameters and metrics by using the Vertex AI SDK.",
+      "C. Implement all models in Vertex AI Pipelines Create a Vertex AI experiment, and associate all pipeline runs with that experiment.",
+      "D. Store all model parameters and metrics as model metadata by using the Vertex AI Metadata API."
+    ],
+    "answer": "B. Create a Vertex AI experiment. Submit all the pipelines as experiment runs. For models trained on notebooks log parameters and metrics by using the Vertex AI SDK."
+  },
+  {
+    "question": "You built a deep learning-based image classification model by using on-premises data. You want to use Vertex AI to deploy the model to production. Due to security concerns, you cannot move your data to the cloud. You are aware that the input data distribution might change over time. You need to detect model performance changes in production. What should you do?",
+    "options": [
+      "A. Use Vertex Explainable AI for model explainability. Configure feature-based explanations.",
+      "B. Use Vertex Explainable AI for model explainability. Configure example-based explanations.",
+      "C. Create a Vertex AI Model Monitoring job. Enable training-serving skew detection for your model.",
+      "D. Create a Vertex AI Model Monitoring job. Enable feature attribution skew and drift detection for your model."
+    ],
+    "answer": "D. Create a Vertex AI Model Monitoring job. Enable feature attribution skew and drift detection for your model."
+  },
+  {
+    "question": "You are working on a prototype of a text classification model in a managed Vertex AI Workbench notebook. You want to quickly experiment with tokenizing text by using a Natural Language Toolkit (NLTK) library. How should you add the library to your Jupyter kernel?",
+    "options": [
+      "A. Install the NLTK library from a terminal by using the pip install nltk command.",
+      "B. Write a custom Dataflow job that uses NLTK to tokenize your text and saves the output to Cloud Storage.",
+      "C. Create a new Vertex AI Workbench notebook with a custom image that includes the NLTK library.",
+      "D. Install the NLTK library from a Jupyter cell by using the !pip install nltk --user command."
+    ],
+    "answer": "D. Install the NLTK library from a Jupyter cell by using the !pip install nltk --user command."
+  },
+  {
+    "question": "You have developed an application that uses a chain of multiple scikit-learn models to predict the optimal price for your company’s products. The workflow logic is shown in the diagram. Members of your team use the individual models in other solution workflows. You want to deploy this workflow while ensuring version control for each individual model and the overall workflow. Your application needs to be able to scale down to zero. You want to minimize the compute resource utilization and the manual effort required to manage this solution. What should you do?",
+    "options": [
+      "A. Expose each individual model as an endpoint in Vertex AI Endpoints. Create a custom container endpoint to orchestrate the workflow.",
+      "B. Create a custom container endpoint for the workflow that loads each model’s individual files Track the versions of each individual model in BigQuery.",
+      "C. Expose each individual model as an endpoint in Vertex AI Endpoints. Use Cloud Run to orchestrate the workflow.",
+      "D. Load each model’s individual files into Cloud Run. Use Cloud Run to orchestrate the workflow. Track the versions of each individual model in BigQuery."
+    ],
+    "answer": "C. Expose each individual model as an endpoint in Vertex AI Endpoints. Use Cloud Run to orchestrate the workflow."
+  },
+  {
+    "question": "You work for a semiconductor manufacturing company. You need to create a real-time application that automates the quality control process. High-definition images of each semiconductor are taken at the end of the assembly line in real time. The photos are uploaded to a Cloud Storage bucket along with tabular data that includes each semiconductor’s batch number, serial number, dimensions, and weight. You need to configure model training and serving while maximizing model accuracy. What should you do?",
+    "options": [
+      "A. Use Vertex AI Data Labeling Service to label the images, and tram an AutoML image classification model. Deploy the model, and configure Pub/Sub to publish a message when an image is categorized into the failing class.",
+      "B. Use Vertex AI Data Labeling Service to label the images, and train an AutoML image classification model. Schedule a daily batch prediction job that publishes a Pub/Sub message when the job completes.",
+      "C. Convert the images into an embedding representation. Import this data into BigQuery, and train a BigQuery ML K-means clustering model with two clusters. Deploy the model and configure Pub/Sub to publish a message when a semiconductor’s data is categorized into the failing cluster.",
+      "D. Import the tabular data into BigQuery, use Vertex AI Data Labeling Service to label the data and train an AutoML tabular classification model. Deploy the model, and configure Pub/Sub to publish a message when a semiconductor’s data is categorized into the failing class."
+    ],
+    "answer": "A. Use Vertex AI Data Labeling Service to label the images, and tram an AutoML image classification model. Deploy the model, and configure Pub/Sub to publish a message when an image is categorized into the failing class."
+  },
+  {
+    "question": "You work at a large organization that recently decided to move their ML and data workloads to Google Cloud. The data engineering team has exported the structured data to a Cloud Storage bucket in Avro format. You need to propose a workflow that performs analytics, creates features, and hosts the features that your ML models use for online prediction. How should you configure the pipeline?",
+    "options": [
+      "A. Ingest the Avro files into Cloud Spanner to perform analytics. Use a Dataflow pipeline to create the features, and store them in Vertex AI Feature Store for online prediction.",
+      "B. Ingest the Avro files into BigQuery to perform analytics. Use a Dataflow pipeline to create the features, and store them in Vertex AI Feature Store for online prediction.",
+      "C. Ingest the Avro files into Cloud Spanner to perform analytics. Use a Dataflow pipeline to create the features, and store them in BigQuery for online prediction.",
+      "D. Ingest the Avro files into BigQuery to perform analytics. Use BigQuery SQL to create features and store them in a separate BigQuery table for online prediction."
+    ],
+    "answer": "B. Ingest the Avro files into BigQuery to perform analytics. Use a Dataflow pipeline to create the features, and store them in Vertex AI Feature Store for online prediction."
+  },
+  {
+    "question": "You work for a multinational organization that has recently begun operations in Spain. Teams within your organization will need to work with various Spanish documents, such as business, legal, and financial documents. You want to use machine learning to help your organization get accurate translations quickly and with the least effort. Your organization does not require domain-specific terms or jargon. What should you do?",
+    "options": [
+      "A. Create a Vertex AI Workbench notebook instance. In the notebook, extract sentences from the documents, and train a custom AutoML text model.",
+      "B. Use Google Translate to translate 1,000 phrases from Spanish to English. Using these translated pairs, train a custom AutoML Translation model.",
+      "C. Use the Document Translation feature of the Cloud Translation API to translate the documents.",
+      "D. Create a Vertex AI Workbench notebook instance. In the notebook, convert the Spanish documents into plain text, and create a custom TensorFlow seq2seq translation model."
+    ],
+    "answer": "C. Use the Document Translation feature of the Cloud Translation API to translate the documents."
+  },
+  {
+    "question": "You have a custom job that runs on Vertex AI on a weekly basis. The job is implemented using a proprietary ML workflow that produces the datasets, models, and custom artifacts, and sends them to a Cloud Storage bucket. Many different versions of the datasets and models were created. Due to compliance requirements, your company needs to track which model was used for making a particular prediction, and needs access to the artifacts for each model. How should you configure your workflows to meet these requirements?",
+    "options": [
+      "A. Use the Vertex AI Metadata API inside the custom job to create context, execution, and artifacts for each model, and use events to link them together.",
+      "B. Create a Vertex AI experiment, and enable autologging inside the custom job.",
+      "C. Configure a TensorFlow Extended (TFX) ML Metadata database, and use the ML Metadata API.",
+      "D. Register each model in Vertex AI Model Registry, and use model labels to store the related dataset and model information."
+    ],
+    "answer": "A. Use the Vertex AI Metadata API inside the custom job to create context, execution, and artifacts for each model, and use events to link them together."
+  },
+  {
+    "question": "You have recently developed a custom model for image classification by using a neural network. You need to automatically identify the values for learning rate, number of layers, and kernel size. To do this, you plan to run multiple jobs in parallel to identify the parameters that optimize performance. You want to minimize custom code development and infrastructure management. What should you do?",
+    "options": [
+      "A. Train an AutoML image classification model.",
+      "B. Create a custom training job that uses the Vertex AI Vizier SDK for parameter optimization.",
+      "C. Create a Vertex AI hyperparameter tuning job.",
+      "D. Create a Vertex AI pipeline that runs different model training jobs in parallel."
+    ],
+    "answer": "C. Create a Vertex AI hyperparameter tuning job."
+  },
+  {
+    "question": "You are tasked with building an MLOps pipeline to retrain tree-based models in production. The pipeline will include components related to data ingestion, data processing, model training, model evaluation, and model deployment. Your organization primarily uses PySpark-based workloads for data preprocessing. You want to minimize infrastructure management effort. How should you set up the pipeline?",
+    "options": [
+      "A. Set up a TensorFlow Extended (TFX) pipeline on Vertex AI Pipelines to orchestrate the MLOps pipeline. Write a custom component for the PySpark-based workloads on Dataproc.",
+      "B. Set up a Vertex AI Pipelines to orchestrate the MLOps pipeline. Use the predefined Dataproc component for the PySpark-based workloads.",
+      "C. Set up Kubeflow Pipelines on Google Kubernetes Engine to orchestrate the MLOps pipeline. Write a custom component for the PySparkbased workloads on Dataproc.",
+      "D. Set up Cloud Composer to orchestrate the MLOps pipeline. Use Dataproc workflow templates for the PySpark-based workloads in Cloud Composer."
+    ],
+    "answer": "B. Set up a Vertex AI Pipelines to orchestrate the MLOps pipeline. Use the predefined Dataproc component for the PySpark-based workloads."
+  }
+]
 with tab1:
     st.title("GCP MLE Practice Questions")
     "Material from [Alex Levkovich's course on Udemy](https://www.udemy.com/course/google-cloud-machine-learning-engineer-certification-exams/)"
@@ -3065,6 +3267,46 @@ with tab6:
 
         st.write(q['question'])
         user_answer = st.radio("a", q["options"], index=None, key=f"t6_q{idx}",
+                            label_visibility='hidden')
+
+        if user_answer:
+            if user_answer in q["answer"]:
+                st.success("Correct!")
+            else:
+                st.error("Incorrect. Try again!")
+
+with tab_ep:
+    st.title("GCP MLE Practice Questions")
+    "Additional questions from [Examprepper](https://www.examprepper.co/)"
+
+   
+    # Function to create a table of contents
+    def create_toc(questions_ep):
+        toc = ""
+        for idx, q in enumerate(questions_ep):
+            toc += f"- [Question {idx + 1}](#{'ep-question-' + str(idx + 1)})\n"
+        return toc
+
+    # Create the table of contents
+    toc = create_toc(questions_ep)
+
+    # Sidebar with table of contents
+    st.sidebar.markdown("## Examprepper")
+    st.sidebar.markdown(toc)
+
+    # Loop through the questions
+    for idx, q in enumerate(questions_ep):
+        st.subheader(f"Question {idx + 1}", anchor=f"ep-question-{idx+1}")
+
+        # Image subline
+        if idx+1==5:
+            st.image('https://img.examtopics.com/professional-machine-learning-engineer/image3.png')
+            st.image('https://img.examtopics.com/professional-machine-learning-engineer/image4.png')
+        elif idx+1==14:
+            st.image('https://img.examtopics.com/professional-machine-learning-engineer/image5.png')
+
+        st.write(q['question'])
+        user_answer = st.radio("a", q["options"], index=None, key=f"ep_q{idx}",
                             label_visibility='hidden')
 
         if user_answer:
