@@ -703,7 +703,7 @@ questions_t2 = [
         "C. Develop a simple heuristic (e.g., based on z-score) to label the machines’ historical performance data. Test this heuristic in a production environment.",
         "D. Hire a team of qualified analysts to review and label the machines’ historical performance data. Train a model based on this manually labeled dataset."
         ],
-        "answer": "B. Implement a simple heuristic (e.g., based on z-score) to label the machines’ historical performance data. Train a model to predict anomalies based on this labeled dataset."
+        "answer": "C. Develop a simple heuristic (e.g., based on z-score) to label the machines’ historical performance data. Test this heuristic in a production environment."
     },
     {
         "question": "You've developed a custom ML model using scikit-learn, and you've encountered longer-than-expected training times. To address this issue, you've decided to migrate your model to Vertex AI Training, and you aim to enhance the model's training efficiency.\n\nWhat should be your initial approach to achieve this goal?",
@@ -1013,7 +1013,7 @@ questions_t2 = [
         "C. Compare the receiver operating characteristic (ROC) curve for each model using the What-If Tool.",
         "D. Compare the mean average precision across the models using the Continuous Evaluation feature."
         ],
-        "answer": "D. Compare the mean average precision across the models using the Continuous Evaluation feature."
+        "answer": "B. Compare the loss performance for each model on the validation data."
     },
     {
         "question": "You developed a tree model based on an extensive feature set of user behavioral data. The model has been in production for 6 months. New regulations were just introduced that require anonymizing personally identifiable information (PII), which you have identified in your feature set using the Cloud Data Loss Prevention API. You want to update your model pipeline to adhere to the new regulations while minimizing a reduction in model performance.\n\nWhat should you do?",
@@ -1669,7 +1669,7 @@ questions_t4 = [
       "C. Create a Dataflow pipeline to convert the data in BigQuery to TFRecords. Run a batch inference on Vertex AI Prediction, and write the results to BigQuery.",
       "D. Load the TensorFlow SavedModel in a Dataflow pipeline. Use the BigQuery I/O connector with a custom function to perform the inference within the pipeline, and write the results to BigQuery."
     ],
-    "answer": "D. Load the TensorFlow SavedModel in a Dataflow pipeline. Use the BigQuery I/O connector with a custom function to perform the inference within the pipeline, and write the results to BigQuery."
+    "answer": "A. Import the TensorFlow model with BigQuery ML, and run the ml.predict function."
   },
   {
     "question": "You are in the process of building a deep neural network classification model, and your dataset includes categorical input features. Some of these categorical columns have a high cardinality, with over 10,000 unique values.\n\nHow should you handle the encoding of these categorical values for input into the model?",
@@ -1839,7 +1839,7 @@ questions_t4 = [
       "C. Configure feature-based explanations by using XRAI. Set the visualization type to OUTLINES, and set the polarity to positive.",
       "D. Configure example-based explanations. Specify the embedding output layer to be used for the latent space representation."
     ],
-    "answer": "A. Configure feature-based explanations by using Integrated Gradients. Set the visualization type to PIXELS, and set the clip_percent_upperbound to 95."
+    "answer": "D. Configure example-based explanations. Specify the embedding output layer to be used for the latent space representation."
   },
   {
     "question": "You are using Vertex AI and TensorFlow to develop a custom image classification model. You need the model’s decisions and the rationale to be understandable to your company’s stakeholders. You also want to explore the results to identify any issues or potential biases.\n\nWhat should you do?",
@@ -1939,7 +1939,7 @@ questions_t4 = [
       "C. Alter the model using BigQuery ML and specify Vertex AI as the model registry. Deploy the model from Vertex AI Model Registry to a Vertex AI endpoint.",
       "D. Export the model from BigQuery ML to Cloud Storage. Import the model into Vertex AI Model Registry. Deploy the model to a Vertex AI endpoint."
     ],
-    "answer": "D. Export the model from BigQuery ML to Cloud Storage. Import the model into Vertex AI Model Registry. Deploy the model to a Vertex AI endpoint."
+    "answer": "C. Alter the model using BigQuery ML and specify Vertex AI as the model registry. Deploy the model from Vertex AI Model Registry to a Vertex AI endpoint."
   },
   {
     "question": "You work for a telecommunications company, and your task is to build a model for predicting which customers may fail to pay their next phone bill. The goal is to offer assistance to at-risk customers, such as service discounts and bill deadline extensions. Your dataset in BigQuery includes various features like Customer_id, Age, Salary, Sex, Average bill value, Number of phone calls in the last month, and Average duration of phone calls. Your objective is to address potential bias issues while maintaining model accuracy.\n\nWhat should you do?",
@@ -2455,7 +2455,7 @@ questions_t5 = [
       "C. Create a Vertex AI Workbench notebook to perform exploratory data analysis and create input features. Save the features as a CSV file in Cloud Storage. Import the CSV file as a new BigQuery table. Use the BigQuery console to run the CREATE MODEL statement. Validate the results by using the ML.EVALUATE and ML.PREDICT statements.",
       "D. Create a Vertex AI Workbench notebook to perform exploratory data analysis. Use IPython magics to create a new BigQuery table with input features, create the model, and validate the results by using the CREATE MODEL, ML.EVALUATE, and ML.PREDICT statements."
     ],
-    "answer": "D. Create a Vertex AI Workbench notebook to perform exploratory data analysis. Use IPython magics to create a new BigQuery table with input features, create the model, and validate the results by using the CREATE MODEL, ML.EVALUATE, and ML.PREDICT statements."
+    "answer": "B. Run the CREATE MODEL statement from the BigQuery console to create an Vertex AI AutoML model. Validate the results by using the ML.EVALUATE and ML.PREDICT statements."
   },
   {
     "question": "You are eager to train an AutoML model for predicting house prices using a compact public dataset stored in BigQuery. Your primary objective is to prepare the data efficiently, opting for the simplest and most straightforward approach.\n\nWhat step should you take to achieve this goal?",
