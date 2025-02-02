@@ -2455,7 +2455,7 @@ questions_t5 = [
       "C. Create a Vertex AI Workbench notebook to perform exploratory data analysis and create input features. Save the features as a CSV file in Cloud Storage. Import the CSV file as a new BigQuery table. Use the BigQuery console to run the CREATE MODEL statement. Validate the results by using the ML.EVALUATE and ML.PREDICT statements.",
       "D. Create a Vertex AI Workbench notebook to perform exploratory data analysis. Use IPython magics to create a new BigQuery table with input features, create the model, and validate the results by using the CREATE MODEL, ML.EVALUATE, and ML.PREDICT statements."
     ],
-    "answer": "B. Run the CREATE MODEL statement from the BigQuery console to create an Vertex AI AutoML model. Validate the results by using the ML.EVALUATE and ML.PREDICT statements."
+    "answer": "D. Create a Vertex AI Workbench notebook to perform exploratory data analysis. Use IPython magics to create a new BigQuery table with input features, create the model, and validate the results by using the CREATE MODEL, ML.EVALUATE, and ML.PREDICT statements."
   },
   {
     "question": "You are eager to train an AutoML model for predicting house prices using a compact public dataset stored in BigQuery. Your primary objective is to prepare the data efficiently, opting for the simplest and most straightforward approach.\n\nWhat step should you take to achieve this goal?",
